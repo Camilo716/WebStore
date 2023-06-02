@@ -7,5 +7,5 @@ public class  CategoryModel
     public bool Active { get; set;}
     public DateTime RegistrationDate { get; set;}
 
-    public virtual ICollection<ProductModel> ProductsInCategory {get;set;}
+    public virtual ICollection<ProductModel> ProductsInCategory { get; set; }
 }
