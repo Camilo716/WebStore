@@ -2,8 +2,10 @@ namespace WebStore.Models;
 
 public class  CategoryModel
 {
-    int CategoryId { get; set;}
-    string Description { get; set;}
-    bool Active { get; set;}
-    DateTime RegistrationDate { get; set;}
+    public int CategoryId { get; set;}
+    public string Description { get; set;}
+    public bool Active { get; set;}
+    public DateTime RegistrationDate { get; set;}
+
+    public virtual ICollection<ProductModel> ProductsInCategory {get;set;}
 }

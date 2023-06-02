@@ -2,8 +2,8 @@ namespace WebStore.Models;
 
 public class BrandModel
 {
-    int BrandId { get; set;}
-    string Description { get; set;}
-    bool Active { get; set;}
-    DateTime RegistrationDate { get; set;}
+    public int BrandId { get; set;}
+    public string Description { get; set;}
+    public bool Active { get; set;}
+    public DateTime RegistrationDate { get; set;}
 }

@@ -2,11 +2,11 @@ namespace WebStore.Models;
 
 public class Client
 {
-    int ClientId { get; set;}
-    string Names { get; set;}
-    string Lastnames { get; set;}
-    string Mail { get; set;}
-    string Password { get; set;}
-    bool Restore { get; set;}
-    DateTime RegistrationDate { get; set;}
+    public int ClientId { get; set;}
+    public string Names { get; set;}
+    public string Lastnames { get; set;}
+    public string Mail { get; set;}
+    public string Password { get; set;}
+    public bool Restore { get; set;}
+    public DateTime RegistrationDate { get; set;}
 }

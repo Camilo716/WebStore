@@ -2,19 +2,19 @@ namespace WebStore.Models;
 
 public class ProductModel
 {
-    int ProductId { get; set;}
-    string Name { get; set;}
-    string Description { get; set;}
+    public int ProductId { get; set;}
+    public string Name { get; set;}
+    public string Description { get; set;}
     
-    int BrandId { get; set;}
-    int CategoryId { get; set;}
+    public int BrandId { get; set;}
+    public int CategoryId { get; set;}
 
-    double Price { get; set;}
-    double Stock { get; set;}
+    public double Price { get; set;}
+    public double Stock { get; set;}
 
-    string ImgRoute { get; set;}
-    string ImgName { get; set;}
+    public string ImgRoute { get; set;}
+    public string ImgName { get; set;}
 
-    bool Active { get; set;} 
-    DateTime RegistrationDate { get; set;}
+    public bool Active { get; set;} 
+    public DateTime RegistrationDate { get; set;}
 }
