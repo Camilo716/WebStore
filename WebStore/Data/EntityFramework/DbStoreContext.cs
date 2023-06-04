@@ -20,10 +20,19 @@ public class DbStoreContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<CategoryModel>(category =>
+        {
+            category.HasKey(c => c.CategoryId);
+            category
+                .Property(c => c.CategoryId)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
 
-        new CategoryEntityConfiguration()
-            .Configure(modelBuilder.Entity<CategoryModel>());
-
+            category
+                .Property(c => c.Description)
+                .HasMaxLength(100)
+                .IsRequired();
+        });
         // modelBuilder.Entity<CategoryModel>()
         //     .HasKey(c => c.CategoryId);
 

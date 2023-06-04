@@ -8,4 +8,10 @@ public class  CategoryModel
     public DateTime RegistrationDate { get; set;}
 
     public virtual ICollection<ProductModel> ProductsInCategory { get; set; }
+    
+    public CategoryModel()
+    {
+        Active = true;
+        RegistrationDate = DateTime.Now;
+    }
 }
