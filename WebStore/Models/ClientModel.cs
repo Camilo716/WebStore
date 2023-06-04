@@ -1,6 +1,6 @@
 namespace WebStore.Models;
 
-public class Client
+public class ClientModel
 {
     public int ClientId { get; set;}
     public string Names { get; set;}
