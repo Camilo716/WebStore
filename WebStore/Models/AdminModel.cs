@@ -1,8 +1,8 @@
 namespace WebStore.Models;
 
-public class AdminUserModel
+public class AdminModel
 {
-    public int AdminUserId { get; set; }
+    public int AdminId { get; set; }
     
     public string Names { get; set; }
     public string Lastnames { get; set; }
