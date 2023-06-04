@@ -8,7 +8,7 @@ public class ProductModel
     
 
     public double Price { get; set;}
-    public double Stock { get; set;}
+    public int Stock { get; set;}
 
     public string ImgRoute { get; set;}
     public string ImgName { get; set;}
@@ -21,4 +21,10 @@ public class ProductModel
 
     public CategoryModel Category { get; set;}
     public BrandModel Brand { get; set;}
+
+    public ProductModel()
+    {
+        Price = 0;
+        RegistrationDate = DateTime.Now;
+    }
 }

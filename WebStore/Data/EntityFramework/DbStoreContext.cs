@@ -55,6 +55,25 @@ public class DbStoreContext : DbContext
                 .WithOne(prod => prod.Brand)
                 .HasForeignKey(prod => prod.BrandId);
         });
+
+        modelBuilder.Entity<ProductModel>(product =>
+        {
+            product.HasKey();
+            product
+                .Property(p => p.ProductId)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
+
+            product
+                .Property(p => p.Name)
+                .HasMaxLength(500);
+
+            product
+                .Property(p => p.Description)
+                .HasMaxLength(500);
+
+            
+        });
     }
 
 }
