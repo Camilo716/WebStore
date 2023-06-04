@@ -26,5 +26,6 @@ public class ProductModel
     {
         Price = 0;
         RegistrationDate = DateTime.Now;
+        Active = true;
     }
 }

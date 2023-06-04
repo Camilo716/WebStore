@@ -72,7 +72,23 @@ public class DbStoreContext : DbContext
                 .Property(p => p.Description)
                 .HasMaxLength(500);
 
-            
+            product
+                .Property(p => p.ImgRoute)
+                .HasMaxLength(100);
+
+            product
+                .Property(p => p.ImgName)
+                .HasMaxLength(100);
+
+            product
+                .HasOne(p => p.Category)
+                .WithMany(cat => cat.ProductsInCategory)
+                .HasForeignKey(p => p.CategoryId);
+
+            product
+                .HasOne(p => p.Brand)
+                .WithMany(brand => brand.ProductsInBrand)
+                .HasForeignKey(p => p.BrandId);
         });
     }
 
