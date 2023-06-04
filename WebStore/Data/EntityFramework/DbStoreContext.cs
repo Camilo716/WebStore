@@ -30,20 +30,9 @@ public class DbStoreContext : DbContext
 
             category
                 .Property(c => c.Description)
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
         });
-        // modelBuilder.Entity<CategoryModel>()
-        //     .HasKey(c => c.CategoryId);
 
-        // modelBuilder.Entity<CategoryModel>()
-        //     .Property(c => c.CategoryId).ValueGeneratedOnAdd();
-
-        // modelBuilder.Entity<CategoryModel>()
-        //     .Property(c => c.Description).HasMaxLength(100);
-
-        // modelBuilder.Entity<CategoryModel>()
-        // base.OnModelCreating(modelBuilder);
     }
 
 }
