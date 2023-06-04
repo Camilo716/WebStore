@@ -49,6 +49,11 @@ public class DbStoreContext : DbContext
             brand
                 .Property(b => b.Description)
                 .HasMaxLength(100);
+
+            brand
+                .HasMany(b => b.ProductsInBrand)
+                .WithOne(prod => prod.Brand)
+                .HasForeignKey(prod => prod.BrandId);
         });
     }
 
