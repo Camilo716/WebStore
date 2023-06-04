@@ -31,8 +31,25 @@ public class DbStoreContext : DbContext
             category
                 .Property(c => c.Description)
                 .HasMaxLength(100);
+
+            category
+                .HasMany(c => c.ProductsInCategory)
+                .WithOne(prod => prod.Category)
+                .HasForeignKey(prod => prod.CategoryId);
         });
 
+        modelBuilder.Entity<BrandModel>(brand => 
+        {
+            brand.HasKey(b => b.BrandId);
+            brand
+                .Property(b => b.BrandId)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
+
+            brand
+                .Property(b => b.Description)
+                .HasMaxLength(100);
+        });
     }
 
 }

@@ -8,4 +8,10 @@ public class BrandModel
     public DateTime RegistrationDate { get; set;}
 
     public virtual ICollection<ProductModel> ProductsInBrand { get; set;}
+
+    public BrandModel()
+    {
+        Active = true;
+        RegistrationDate = DateTime.Now;
+    }
 }
