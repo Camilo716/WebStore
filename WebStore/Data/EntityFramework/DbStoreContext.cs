@@ -95,4 +95,16 @@ public class DbStoreContext : DbContext
             client.Property(c => c.Password).HasMaxLength(150);
         });
     }
+
+    private void ConfigureShoppingCart(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ShoppingCartModel>(cart =>
+        {
+            cart.HasKey(c => c.ShoppingCartId);
+            cart.Property(c => c.ShoppingCartId).ValueGeneratedOnAdd().IsRequired();
+
+
+
+        });
+    }
 }
