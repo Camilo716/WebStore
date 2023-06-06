@@ -103,8 +103,15 @@ public class DbStoreContext : DbContext
             cart.HasKey(c => c.ShoppingCartId);
             cart.Property(c => c.ShoppingCartId).ValueGeneratedOnAdd().IsRequired();
 
+            cart
+                .HasOne(c => c.Client)
+                .WithMany()
+                .HasForeignKey(c => c.ClientId);
 
-
+            cart
+                .HasOne(c => c.Product)
+                .WithMany()
+                .HasForeignKey(c => c.ProductId);
         });
     }
 }
