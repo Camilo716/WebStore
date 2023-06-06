@@ -6,12 +6,17 @@ public class SaleModel
 
     public int TotalProducts { get; set;}
     public double  TotalAmmount { get; set;}
-    public DateTime SaleDate { get; set; }
-
     public string  Contact { get; set;}
     public int PhoneNumber { get; set;}
     public string Adress { get; set;}
+    public DateTime SaleDate { get; set; }
+    public string TransactionId { get; set; }
 
     public int ClientId { get; set; }
-    public string TransactionId { get; set; }
+    public ClientModel Client { get; set; }
+
+    public SaleModel()
+    {
+        SaleDate = DateTime.Now;
+    }
 }

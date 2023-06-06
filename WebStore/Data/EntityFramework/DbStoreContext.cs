@@ -24,6 +24,9 @@ public class DbStoreContext : DbContext
         ConfigureBrand(modelBuilder);
         ConfigureProduct(modelBuilder);
         ConfigureClient(modelBuilder);
+        ConfigureShoppingCart(modelBuilder);
+
+        base.OnModelCreating(modelBuilder);
     }
 
     private void ConfigureCategory(ModelBuilder modelBuilder)
@@ -31,7 +34,7 @@ public class DbStoreContext : DbContext
         modelBuilder.Entity<CategoryModel>(category =>
         {
             category.HasKey(c => c.CategoryId);
-            category.Property(c => c.CategoryId).ValueGeneratedOnAdd().IsRequired();
+            category.Property(c => c.CategoryId).ValueGeneratedOnAdd();
 
             category.Property(c => c.Description).HasMaxLength(100);
 
@@ -47,7 +50,7 @@ public class DbStoreContext : DbContext
         modelBuilder.Entity<BrandModel>(brand =>
         {
             brand.HasKey(b => b.BrandId);
-            brand.Property(b => b.BrandId).ValueGeneratedOnAdd().IsRequired();
+            brand.Property(b => b.BrandId).ValueGeneratedOnAdd();
 
             brand.Property(b => b.Description).HasMaxLength(100);
 
@@ -63,7 +66,7 @@ public class DbStoreContext : DbContext
         modelBuilder.Entity<ProductModel>(product =>
         {
             product.HasKey(p => p.ProductId);
-            product.Property(p => p.ProductId).ValueGeneratedOnAdd().IsRequired();
+            product.Property(p => p.ProductId).ValueGeneratedOnAdd();
 
             product.Property(p => p.Name).HasMaxLength(500);
             product.Property(p => p.Description).HasMaxLength(500);
@@ -87,7 +90,7 @@ public class DbStoreContext : DbContext
         modelBuilder.Entity<ClientModel>(client =>
         {
             client.HasKey(c => c.ClientId);
-            client.Property(c => c.ClientId).ValueGeneratedOnAdd().IsRequired();
+            client.Property(c => c.ClientId).ValueGeneratedOnAdd();
 
             client.Property(c => c.Names).HasMaxLength(100);
             client.Property(c => c.Lastnames).HasMaxLength(100);
@@ -101,7 +104,7 @@ public class DbStoreContext : DbContext
         modelBuilder.Entity<ShoppingCartModel>(cart =>
         {
             cart.HasKey(c => c.ShoppingCartId);
-            cart.Property(c => c.ShoppingCartId).ValueGeneratedOnAdd().IsRequired();
+            cart.Property(c => c.ShoppingCartId).ValueGeneratedOnAdd();
 
             cart
                 .HasOne(c => c.Client)
@@ -112,6 +115,23 @@ public class DbStoreContext : DbContext
                 .HasOne(c => c.Product)
                 .WithMany()
                 .HasForeignKey(c => c.ProductId);
+        });
+    }
+
+    private void ConfigureSale(ModelBuilder modelBuilder)
+    {  
+        modelBuilder.Entity<SaleModel>(sale => 
+        {
+            sale.HasKey(s => s.SaleId);
+            sale.Property(s => s.SaleId).ValueGeneratedOnAdd();
+
+            sale.Property(s => s.Contact).HasMaxLength(50);
+            sale.Property(s => s.Adress).HasMaxLength(100);
+
+            sale
+                .HasOne(s => s.Client)
+                .WithMany()
+                .HasForeignKey(s => s.ClientId);
         });
     }
 }
