@@ -20,65 +20,55 @@ public class DbStoreContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        ConfigureCategory(modelBuilder);
+        ConfigureBrand(modelBuilder);
+        ConfigureProduct(modelBuilder);
+        ConfigureClient(modelBuilder);
+    }
+
+    private void ConfigureCategory(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<CategoryModel>(category =>
         {
             category.HasKey(c => c.CategoryId);
-            category
-                .Property(c => c.CategoryId)
-                .ValueGeneratedOnAdd()
-                .IsRequired();
+            category.Property(c => c.CategoryId).ValueGeneratedOnAdd().IsRequired();
 
-            category
-                .Property(c => c.Description)
-                .HasMaxLength(100);
+            category.Property(c => c.Description).HasMaxLength(100);
 
             category
                 .HasMany(c => c.ProductsInCategory)
                 .WithOne(prod => prod.Category)
                 .HasForeignKey(prod => prod.CategoryId);
         });
+    }
 
-        modelBuilder.Entity<BrandModel>(brand => 
+    private void ConfigureBrand(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<BrandModel>(brand =>
         {
             brand.HasKey(b => b.BrandId);
-            brand
-                .Property(b => b.BrandId)
-                .ValueGeneratedOnAdd()
-                .IsRequired();
+            brand.Property(b => b.BrandId).ValueGeneratedOnAdd().IsRequired();
 
-            brand
-                .Property(b => b.Description)
-                .HasMaxLength(100);
+            brand.Property(b => b.Description).HasMaxLength(100);
 
             brand
                 .HasMany(b => b.ProductsInBrand)
                 .WithOne(prod => prod.Brand)
                 .HasForeignKey(prod => prod.BrandId);
         });
+    }
 
+    private void ConfigureProduct(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<ProductModel>(product =>
         {
-            product.HasKey();
-            product
-                .Property(p => p.ProductId)
-                .ValueGeneratedOnAdd()
-                .IsRequired();
+            product.HasKey(p => p.ProductId);
+            product.Property(p => p.ProductId).ValueGeneratedOnAdd().IsRequired();
 
-            product
-                .Property(p => p.Name)
-                .HasMaxLength(500);
-
-            product
-                .Property(p => p.Description)
-                .HasMaxLength(500);
-
-            product
-                .Property(p => p.ImgRoute)
-                .HasMaxLength(100);
-
-            product
-                .Property(p => p.ImgName)
-                .HasMaxLength(100);
+            product.Property(p => p.Name).HasMaxLength(500);
+            product.Property(p => p.Description).HasMaxLength(500);
+            product.Property(p => p.ImgRoute).HasMaxLength(100);
+            product.Property(p => p.ImgName).HasMaxLength(100);
 
             product
                 .HasOne(p => p.Category)
@@ -90,31 +80,19 @@ public class DbStoreContext : DbContext
                 .WithMany(brand => brand.ProductsInBrand)
                 .HasForeignKey(p => p.BrandId);
         });
+    }
 
+    private void ConfigureClient(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<ClientModel>(client =>
         {
             client.HasKey(c => c.ClientId);
-            client
-                .Property(c => c.ClientId)
-                .ValueGeneratedOnAdd()
-                .IsRequired();
+            client.Property(c => c.ClientId).ValueGeneratedOnAdd().IsRequired();
 
-            client
-                .Property(c => c.Names)
-                .HasMaxLength(100);
-
-            client
-                .Property(c => c.Lastnames)
-                .HasMaxLength(100);
-
-            client
-                .Property(c => c.Mail)
-                .HasMaxLength(100);
-
-            client 
-                .Property(c => c.Password)
-                .HasMaxLength(150);
+            client.Property(c => c.Names).HasMaxLength(100);
+            client.Property(c => c.Lastnames).HasMaxLength(100);
+            client.Property(c => c.Mail).HasMaxLength(100);
+            client.Property(c => c.Password).HasMaxLength(150);
         });
     }
-
 }
