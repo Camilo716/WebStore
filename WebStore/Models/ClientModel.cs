@@ -9,4 +9,10 @@ public class ClientModel
     public string Password { get; set;}
     public bool Restore { get; set;}
     public DateTime RegistrationDate { get; set;}
+
+    public ClientModel()
+    {
+        Restore = true;
+        RegistrationDate = DateTime.Now;
+    }
 }
