@@ -25,6 +25,7 @@ public class DbStoreContext : DbContext
         ConfigureProduct(modelBuilder);
         ConfigureClient(modelBuilder);
         ConfigureShoppingCart(modelBuilder);
+        ConfigureSale(modelBuilder);
 
         base.OnModelCreating(modelBuilder);
     }
@@ -133,5 +134,15 @@ public class DbStoreContext : DbContext
                 .WithMany()
                 .HasForeignKey(s => s.ClientId);
         });
+    }
+
+    private void ConfigureSaleDetails(ModelBuilder modelBuilder)
+    {  
+        modelBuilder.Entity<SaleDetailsModel>(details => 
+        {
+            details.HasKey(d => d.SaleDetailsId);
+            details.Property(d => d.SaleDetailsId).ValueGeneratedOnAdd();
+
+    
     }
 }

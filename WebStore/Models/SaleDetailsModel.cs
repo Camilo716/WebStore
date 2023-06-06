@@ -9,4 +9,6 @@ public class SaleDetailsModel
 
     public int SaleId { get; set;}
     public int ProductId { get; set;}
+    public SaleModel Sale { get; set; }
+    public ProductModel Product { get; set;}
 }
