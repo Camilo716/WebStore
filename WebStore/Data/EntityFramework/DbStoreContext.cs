@@ -27,7 +27,8 @@ public class DbStoreContext : DbContext
         ConfigureShoppingCart(modelBuilder);
         ConfigureSale(modelBuilder);
         ConfigureSaleDetails(modelBuilder);
-
+        ConfigureAdmin(modelBuilder);
+        
         base.OnModelCreating(modelBuilder);
     }
 
@@ -153,6 +154,20 @@ public class DbStoreContext : DbContext
                 .HasOne(d => d.Product)
                 .WithMany()
                 .HasForeignKey(d => d.ProductId);
+        });
+    }
+
+    private void ConfigureAdmin(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<AdminModel>(admin =>
+        {
+            admin.HasKey(a => a.AdminId);
+            admin.Property(a => a.AdminId).ValueGeneratedOnAdd();
+
+            admin.Property(a => a.Names).HasMaxLength(100);
+            admin.Property(a => a.Lastnames).HasMaxLength(100);
+            admin.Property(a => a.Mail).HasMaxLength(100);
+            admin.Property(a => a.Password).HasMaxLength(150);
         });
     }
 }
