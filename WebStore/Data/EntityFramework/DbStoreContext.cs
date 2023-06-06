@@ -90,6 +90,31 @@ public class DbStoreContext : DbContext
                 .WithMany(brand => brand.ProductsInBrand)
                 .HasForeignKey(p => p.BrandId);
         });
+
+        modelBuilder.Entity<ClientModel>(client =>
+        {
+            client.HasKey(c => c.ClientId);
+            client
+                .Property(c => c.ClientId)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
+
+            client
+                .Property(c => c.Names)
+                .HasMaxLength(100);
+
+            client
+                .Property(c => c.Lastnames)
+                .HasMaxLength(100);
+
+            client
+                .Property(c => c.Mail)
+                .HasMaxLength(100);
+
+            client 
+                .Property(c => c.Password)
+                .HasMaxLength(150);
+        });
     }
 
 }
