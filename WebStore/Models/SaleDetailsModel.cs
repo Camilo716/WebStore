@@ -11,4 +11,5 @@ public class SaleDetailsModel
     public int ProductId { get; set;}
     public SaleModel Sale { get; set; }
     public ProductModel Product { get; set;}
+    
 }
